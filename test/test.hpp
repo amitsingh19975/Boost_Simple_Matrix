@@ -196,7 +196,7 @@
                     n(i,j) = i*m.col() + j + 1;
             START
             auto prod = m * n;
-            STOP("Matrix Multipication Assign Time in milliseconds: ");
+            STOP("Matrix Multipication Time in milliseconds: ");
 
             std::vector<std::vector<int>> test(test_size,std::vector<int>(test_size));
             for(auto i = 0; i < test_size; i++)
@@ -213,7 +213,7 @@
                     assert(( prod(i,j) == val ));
                 }
             }
-            std::cout<<"Matrix Multipication Assign Test Passed!\n\n";
+            std::cout<<"Matrix Multipication Test Passed!\n\n";
         }
 
         auto testIntMulAssign(size_t test_size = 100) ->void {

@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Amit/Desktop/Python/c++/boost/include/matrix.hpp
+vector
+-
+iostream
+-
+
+/Users/Amit/Desktop/Python/c++/boost/main.cpp
+iostream
+-
+test/test.hpp
+/Users/Amit/Desktop/Python/c++/boost/test/test.hpp
+
+/Users/Amit/Desktop/Python/c++/boost/test/test.hpp
+../include/matrix.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix.hpp
+iostream
+-
+chrono
+-
+complex
+-
+cassert
+-
+

@@ -8,19 +8,19 @@ int main(){
 
     test::testIntAssign();
     test::testIntCompare();
-    test::testIntAdd();
+    test::testIntAdd(1000);
     test::testIntAddAssign();
-    test::testIntSub();
+    test::testIntSub(1000);
     test::testIntSubAssign();
-    test::testIntMul();
+    test::testIntMul(1000);
     test::testIntMulAssign();
     test::testComplexAssign();
     test::testComplexCompare();
-    test::testComplexAdd();
-    test::testComplexSub();
+    test::testComplexAdd(1000);
+    test::testComplexSub(1000);
     test::testComplexSubAssign();
     test::testComplexAddAssign();
-    test::testComplexMul();
+    test::testComplexMul(1000);
     test::testComplexMulAssign();
 
     return 0;
