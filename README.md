@@ -8,8 +8,8 @@ Simple Matrix lib for **Programming competency test**
 - provides test header in test directory
 
 # How To Compile!
-    1. make
-    2. ./bin/Simple_Matrix
+    1. make or cmake CMakeLists.txt then make
+    2. To run ./bin/Simple_Matrix because output is inside bin
 
 # Speed Test in milliseconds
 
