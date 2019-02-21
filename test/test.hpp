@@ -25,8 +25,8 @@ namespace test {
 
     
     auto testIntAssign(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n;
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n;
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 m(i,j) = i + j;
@@ -38,8 +38,8 @@ namespace test {
     }
 
     auto testIntCompare(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n(test_size,test_size);
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n(test_size,test_size);
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 m(i,j) = i + j;
@@ -60,8 +60,8 @@ namespace test {
     }
 
     auto testIntAdd(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n(test_size,test_size);
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n(test_size,test_size);
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 m(i,j) = i + j;
@@ -72,7 +72,7 @@ namespace test {
         auto s = m + n;
         STOP("Matrix Addition Time in milliseconds: ")
 
-        Matrix<int> sum(test_size,test_size);
+        Matrix<size_t> sum(test_size,test_size);
 
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
@@ -83,8 +83,8 @@ namespace test {
         
     }
     auto testIntAddAssign(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n(test_size,test_size);
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n(test_size,test_size);
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 m(i,j) = i + j;
@@ -95,7 +95,7 @@ namespace test {
         m += n;
         STOP("Matrix Addition Assign Time in milliseconds: ")
 
-        Matrix<int> sum(test_size,test_size);
+        Matrix<size_t> sum(test_size,test_size);
 
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
@@ -106,8 +106,8 @@ namespace test {
         
     }
     auto testIntSub(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n(test_size,test_size);
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n(test_size,test_size);
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 m(i,j) = i + j;
@@ -118,7 +118,7 @@ namespace test {
         auto diff = m - n;
         STOP("Matrix Subtraction Time in milliseconds: ")
 
-        Matrix<int> t(test_size,test_size);
+        Matrix<size_t> t(test_size,test_size);
 
         assert(t == diff);
         std::cout<<"Matrix Subtraction Test Passed!\n\n";
@@ -142,9 +142,9 @@ namespace test {
         std::cout<<"Matrix Subtraction Assign Test Passed!\n\n";
     }
 
-    auto testIntMul(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n(test_size,test_size);
+    auto testIntMul(size_t test_size = 4) ->void {
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n(test_size,test_size);
         
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
@@ -156,7 +156,7 @@ namespace test {
         auto prod = m * n;
         STOP("Matrix Multipication Time in milliseconds: ");
 
-        std::vector<std::vector<int>> test(test_size,std::vector<int>(test_size));
+        std::vector<std::vector<size_t>> test(test_size,std::vector<size_t>(test_size));
         for(auto i = 0; i < test_size; i++)
             for(auto j = 0; j < test_size; j++)
                 test[i][j] = i * test_size + j + 1;
@@ -164,7 +164,7 @@ namespace test {
 
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
-                int val = 0;
+                size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
                     val += test[i][k] * test[k][j];
                 }
@@ -174,9 +174,9 @@ namespace test {
         std::cout<<"Matrix Multipication Test Passed!\n\n";
     }
 
-    auto testIntMulAssign(size_t test_size = 100) ->void {
-        Matrix<int> m(test_size,test_size);
-        Matrix<int> n(test_size,test_size);
+    auto testIntMulAssign(size_t test_size = 3) ->void {
+        Matrix<size_t> m(test_size,test_size);
+        Matrix<size_t> n(test_size,test_size);
         
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
@@ -187,8 +187,7 @@ namespace test {
         START
         m *= n;
         STOP("Matrix Multipication Assign Time in milliseconds: ");
-
-        std::vector<std::vector<int>> test(test_size,std::vector<int>(test_size));
+        std::vector<std::vector<size_t>> test(test_size,std::vector<size_t>(test_size));
         for(auto i = 0; i < test_size; i++)
             for(auto j = 0; j < test_size; j++)
                 test[i][j] = i * test_size + j + 1;
@@ -196,7 +195,7 @@ namespace test {
 
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
-                int val = 0;
+                size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
                     val += test[i][k] * test[k][j];
                 }

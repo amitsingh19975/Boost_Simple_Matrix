@@ -13,15 +13,15 @@ int main(){
     test::testIntSub(1000);
     test::testIntSubAssign();
     test::testIntMul(1000);
-    test::testIntMulAssign();
+    test::testIntMulAssign(1000);
     test::testComplexAssign();
     test::testComplexCompare();
-    test::testComplexAdd(1000);
-    test::testComplexSub(1000);
+    test::testComplexAdd();
+    test::testComplexSub();
     test::testComplexSubAssign();
     test::testComplexAddAssign();
     test::testComplexMul(1000);
-    test::testComplexMulAssign();
+    test::testComplexMulAssign(1000);
 
     return 0;
 }
