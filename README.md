@@ -15,24 +15,24 @@ Simple Matrix lib for **Programming competency test**
 
 #### Addition
 
-| Type       | Shape       | Execution time (in ms)  |
-| :--------: | :---------: | :----------------------------------: |
-| `int`      | (1000,1000) | 6                                |
-| `complex`  | (1000,1000) | 11                                |
+| Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms) |
+| :--------: | :---------: | :-----------------------|:----------------------------------:|
+| `int`      | (1000,1000) |0                        |0                                   |
+| `complex`  | (1000,1000) | 0                       |54                                   |
 
 #### Subtraction
 
-| Type       | Shape       | Execution time (in ms)  |
-| :--------: | :---------: | :----------------------------------: |
-| `int`      | (1000,1000) | 4                                |
-| `complex`  | (1000,1000) | 7                                |
+| Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms)  |
+| :--------: | :---------: | :-----------------------|:----------------------------------:|
+| `int`      | (1000,1000) |0                        |0                                   |
+| `complex`  | (1000,1000) |0                        |55                                  |
 
 #### Multiplication
 
-| Type       | Shape       | Execution time (in ms)  |
-| :--------: | :---------: | :----------------------------------: |
-| `int`      | (1000,1000) | 12108                                   |
-| `complex`  | (1000,1000) | 30332                                   |
+| Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms)  |
+| :--------: | :---------: | :---------------------: |:----------------------------------:|
+| `int`      | (1000,1000) | 0                       |13479                                   |
+| `complex`  | (1000,1000) | 0                       |30137                                   |
 
 # System Specs
 - OS: MacOS
