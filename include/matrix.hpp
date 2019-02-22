@@ -10,40 +10,82 @@
  */
 namespace simple{
 
+    /**
+     * Base class for casting
+     */ 
     template<typename Expression>
     struct BaseExpression{
+        /**
+         * @return Expression
+         */
         constexpr auto self() const-> Expression const&{
             return static_cast<Expression const&>(*this);
         }
         virtual ~BaseExpression(){}
     };
 
+    /**
+     * Binary Expression
+     */
     template<typename Operation, typename Op1, typename Op2> 
     struct BinaryExpression : public BaseExpression<BinaryExpression<Operation,Op1,Op2>>{
         Op1 const& m_lhs;
         Op2 const& m_rhs;
         Operation m_oper;
-
+        /**
+         * Constructor
+         * @param Op1 operand  
+         * @param Op2 operand
+         */
         BinaryExpression(Op1 const& lhs, Op2 const& rhs):m_lhs(lhs),m_rhs(rhs){}
 
+        /**
+         * Saving Common type for later use 
+         */
         using Type = std::common_type_t<typename Op1::Type,typename Op2::Type>;
         
+        /**
+         * evaluating expression
+         * @param i of type size_t
+         * @param j of type size_t
+         */
         constexpr auto operator()(size_t i, size_t j) const -> Type{
             return m_oper(m_lhs.self(),m_rhs.self(),i,j);
         }
 
-        constexpr auto operator()(size_t i) const -> bool{
-            return m_oper(m_lhs.self(),m_rhs.self(),i);
-        }
+        /**
+         * @return rows
+         */
         constexpr auto row() const noexcept -> size_t{return m_lhs.row();}
+        
+        /**
+         * @return cols
+         */
         constexpr auto col() const noexcept -> size_t{return m_rhs.col();}
+        
+        /**
+         * @return size of vector
+         */
         constexpr auto size() const noexcept -> size_t{return row() * col();}
 
 
         virtual ~BinaryExpression(){}
     };
 
+
+    /**
+     * Addition struct which tells how to add
+     * two binary expression
+     */
     struct Addtion{
+        /**
+         * operator () overloading
+         * @param Op1 operand
+         * @param Op2 operand
+         * @param i of type size_t
+         * @param j of type size_t
+         * @return std::common_type_t<typename Op1::Type,typename Op2::Type>
+         */
         template<typename Op1, typename Op2>
         constexpr auto operator()(Op1 const& lhs, Op2 const& rhs, size_t i, size_t j) const->
             std::common_type_t<typename Op1::Type,typename Op2::Type>{
@@ -51,7 +93,19 @@ namespace simple{
             }
     };
 
+    /**
+     * Subtraction struct which tells how to add
+     * two binary expression
+     */
     struct Subtraction{
+        /**
+         * operator () overloading
+         * @param Op1 operand
+         * @param Op2 operand
+         * @param i of type size_t
+         * @param j of type size_t
+         * @return std::common_type_t<typename Op1::Type,typename Op2::Type>
+         */
         template<typename Op1, typename Op2>
         constexpr auto operator()(Op1 const& lhs, Op2 const& rhs, size_t i, size_t j) const->
         std::common_type_t<typename Op1::Type,typename Op2::Type>{
@@ -59,7 +113,19 @@ namespace simple{
         }
     };
 
+    /**
+     * Multipication struct which tells how to add
+     * two binary expression
+     */
     struct Multipication{
+        /**
+         * operator () overloading
+         * @param Op1 operand
+         * @param Op2 operand
+         * @param i of type size_t
+         * @param j of type size_t
+         * @return std::common_type_t<typename Op1::Type,typename Op2::Type>
+         */
         template<typename Op1, typename Op2>
         constexpr auto operator()(Op1 const& lhs, Op2 const& rhs, size_t i, size_t j) const->
         std::common_type_t<typename Op1::Type,typename Op2::Type>{
@@ -69,8 +135,14 @@ namespace simple{
             }
             return sum;
         }
-    };
+    }; 
 
+    /**
+     * operator + overloading
+     * @param lhs type of BaseExpression
+     * @param rhs type of BaseExpression
+     * @return BinaryExpression<Addtion,Op1,Op2>
+     */
     template<typename Op1, typename Op2>
     auto operator+(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> BinaryExpression<Addtion,Op1,Op2>{
         assert(lhs.self().row() == rhs.self().row());
@@ -78,6 +150,12 @@ namespace simple{
         return {lhs.self(),rhs.self()};
     }
 
+    /**
+     * operator - overloading
+     * @param lhs type of BaseExpression
+     * @param rhs type of BaseExpression
+     * @return BinaryExpression<Subtraction,Op1,Op2>
+     */
     template<typename Op1, typename Op2>
     auto operator-(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> BinaryExpression<Subtraction,Op1,Op2>{
         assert(lhs.self().row() == rhs.self().row());
@@ -85,6 +163,12 @@ namespace simple{
         return {lhs.self(),rhs.self()};
     }
 
+    /**
+     * operator * overloading
+     * @param lhs type of BaseExpression
+     * @param rhs type of BaseExpression
+     * @return BinaryExpression<Multipication,Op1,Op2>
+     */
     template<typename Op1, typename Op2>
     auto operator*(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> BinaryExpression<Multipication,Op1,Op2>{
         assert(lhs.self().row() == rhs.self().col());
@@ -162,15 +246,23 @@ namespace simple{
      * Operator() Overloading
      * @param i type of size_t
      * @param j type of size_t
+     * @return T
      */
         T& operator()(size_t i, size_t j);
         
+    /**
+     * Operator() Overloading
+     * @param i type of size_t
+     * @param j type of size_t
+     * @return const T
+     */
         const T operator()(size_t i, size_t j) const;
     
     /**
      * Operator[] Overloading
      * for accessing linearly
      * @param i type of size_t
+     * @return T&
      */
         T& operator[](size_t i);
     
