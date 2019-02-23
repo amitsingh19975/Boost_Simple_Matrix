@@ -17,22 +17,22 @@ Simple Matrix lib for **Programming competency test**
 
 | Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms) |
 | :--------: | :---------: | :-----------------------|:----------------------------------:|
-| `int`      | (1000,1000) |0                        |0                                   |
-| `complex`  | (1000,1000) | 0                       |54                                   |
+| `int`      | (1000,1000) | 35                      | 0                                   |
+| `complex`  | (1000,1000) | 48                      | 55                                   |
 
 #### Subtraction
 
 | Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms)  |
 | :--------: | :---------: | :-----------------------|:----------------------------------:|
-| `int`      | (1000,1000) |0                        |0                                   |
-| `complex`  | (1000,1000) |0                        |55                                  |
+| `int`      | (1000,1000) | 36                      | 0                                   |
+| `complex`  | (1000,1000) | 48                      | 55                                  |
 
 #### Multiplication
 
-| Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms)  |
-| :--------: | :---------: | :---------------------: |:----------------------------------:|
-| `int`      | (1000,1000) | 0                       |13479                                   |
-| `complex`  | (1000,1000) | 0                       |30137                                   |
+| Type       | Shape       | Execution time for Direct (in ms)  |Execution time for Lazy (in ms) |Execution  time for Lazy assignment (in ms) |
+| :--------: | :---------: | :---------------------: |:----------------------------------:  |:----------------------------------:  |
+| `int`      | (1000,1000) | 26433                   |13479                                 |13312                                 |
+| `complex`  | (1000,1000) | 61080                   |34132                                 |36019                                 |
 
 # System Specs
 - OS: MacOS
