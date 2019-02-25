@@ -416,7 +416,6 @@ namespace test {
         START
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
-                size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
                     at(test_prod,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
                 }
