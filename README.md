@@ -31,8 +31,11 @@ Simple Matrix lib for **Programming competency test**
 
 | Type       | Shape       | Execution time for Direct (in ms)  |Execution time for Lazy (in ms) |Execution  time for Lazy assignment (in ms) |
 | :--------: | :---------: |:---------------------: |:----------------------------------:  |:----------------------------------:  |
-| `int`      | (1000,1000) | 26433                   |13479                                 |13312                                 |
-| `complex`  | (1000,1000) | 61080                   |34132                                 |36019                                 |
+| `int`      | (1000,1000) | 14786                   |13811                                 |13312                                 |
+| `complex`  | (1000,1000) | 32040                   |34132                                 |36019                                 |
+
+## Time Taken by Matrix Multiplication
+![matrix_multiplication](assets/Matrix\ Multiplication.png)
 
 # System Specs
 - OS: MacOS

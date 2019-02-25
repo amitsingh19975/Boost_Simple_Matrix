@@ -23,6 +23,10 @@ namespace test {
             t = duration_cast<milliseconds>(t2 - t1);\
             std::cout<<messg<<t.count()<<'\n';
 
+    template<typename T>
+    auto at(std::vector<T>& v,size_t size,size_t i, size_t j) -> T&{
+        return v[(j * size) + i];
+    }
     
     auto testIntAssign(size_t test_size = 100) ->void {
         Matrix<size_t> m(test_size,test_size);
@@ -46,6 +50,29 @@ namespace test {
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 n(i,j) = i + j;
+        
+        std::vector<size_t> test(test_size * test_size,0);
+        std::vector<size_t> test_eq(test_size * test_size,0);
+
+        for(auto i = 0; i < test_size; i++)
+            for(auto j = 0; j < test_size; j++)
+                at(test,test_size,i,j) = i * test_size + j + 1;
+        
+        for( int i = 0; i < test_size; i++ ) {
+            for( int j = 0; j < test_size; j++ ) {
+                for( int k = 0; k < test_size; k++ ) {
+                    at(test_eq,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
+                }
+            }
+        }
+
+        for(auto i = 0; i < test_size; i++){
+            for(auto j = 0; j < test_size; j++){
+                at(test_eq,test_size,i,j) += at(test,test_size,i,j);
+            }
+        }
+
+        auto eq = m * n + n;
         START
         assert(m==n);
         STOP("Compare(==) Time in milliseconds: ")
@@ -157,18 +184,18 @@ namespace test {
             for(auto j = 0; j < m.col(); j++)
                 n(i,j) = i*m.col() + j + 1;
 
-        std::vector<std::vector<size_t>> test(test_size,std::vector<size_t>(test_size));
-        std::vector<std::vector<size_t>> test_prod(test_size,std::vector<size_t>(test_size,0));
+        std::vector<size_t> test(test_size * test_size,0);
+        std::vector<size_t> test_prod(test_size * test_size,0);
         for(auto i = 0; i < test_size; i++)
             for(auto j = 0; j < test_size; j++)
-                test[i][j] = i * test_size + j + 1;
+                at(test,test_size,i,j) = i * test_size + j + 1;
 
         START
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
                 size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
-                    test_prod[i][j] += test[i][k] * test[k][j];
+                    at(test_prod,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
                 }
             }
         }
@@ -178,7 +205,7 @@ namespace test {
         auto prod = m * n;
         for(auto i = 0; i < prod.row(); i++){
             for(auto j = 0; j < prod.col(); j++){
-                assert(( prod(i,j) == test_prod[i][j] ));
+                assert(( prod(i,j) == at(test_prod,test_size,i,j) ));
             }
         }
         STOP("Matrix Lazy Multipication Time in milliseconds: ");
@@ -196,18 +223,18 @@ namespace test {
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 n(i,j) = i*m.col() + j + 1;
-        std::vector<std::vector<size_t>> test(test_size,std::vector<size_t>(test_size));
-        std::vector<std::vector<size_t>> test_prod(test_size,std::vector<size_t>(test_size,0));
+        std::vector<size_t> test(test_size * test_size,0);
+        std::vector<size_t> test_prod(test_size * test_size,0);
         for(auto i = 0; i < test_size; i++)
             for(auto j = 0; j < test_size; j++)
-                test[i][j] = i * test_size + j + 1;
+                at(test,test_size,i,j) = i * test_size + j + 1;
 
         START
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
                 size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
-                    test_prod[i][j] += test[i][k] * test[k][j];
+                    at(test_prod,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
                 }
             }
         }
@@ -217,7 +244,7 @@ namespace test {
         m *= n;
         for(auto i = 0; i < m.row(); i++){
             for(auto j = 0; j < m.col(); j++){
-                assert(( m(i,j) == test_prod[i][j] ));
+                assert(( m(i,j) == at(test_prod,test_size,i,j) ));
             }
         }
         STOP("Matrix Lazy Assign Multipication Time in milliseconds: ");
@@ -239,14 +266,36 @@ namespace test {
     }
 
     auto testComplexCompare(size_t test_size = 100) ->void {
-        Matrix<complex<int>> m(test_size,test_size);
-        Matrix<complex<int>> n(test_size,test_size);
+        Matrix<complex<size_t>> m(test_size,test_size);
+        Matrix<complex<size_t>> n(test_size,test_size);
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 m(i,j) = complex(i + j,i + j);
         for(auto i = 0; i < m.row(); i++)
             for(auto j = 0; j < m.col(); j++)
                 n(i,j) = complex(i + j,i + j);
+        
+        std::vector<complex<size_t>> test(test_size * test_size,complex{0,0});
+        std::vector<complex<size_t>> test_eq(test_size * test_size,complex{0,0});
+
+        for(auto i = 0; i < test_size; i++)
+            for(auto j = 0; j < test_size; j++)
+                at(test,test_size,i,j) = i * test_size + j + 1;
+        
+        for( int i = 0; i < test_size; i++ ) {
+            for( int j = 0; j < test_size; j++ ) {
+                for( int k = 0; k < test_size; k++ ) {
+                    at(test_eq,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
+                }
+            }
+        }
+
+        for(auto i = 0; i < test_size; i++){
+            for(auto j = 0; j < test_size; j++){
+                at(test_eq,test_size,i,j) += at(test,test_size,i,j);
+            }
+        }
+        auto eq = m * n + n;
         START
         assert(m==n);
         STOP("Complex Compare(==) Time in milliseconds: ")
@@ -358,31 +407,31 @@ namespace test {
             for(auto j = 0; j < m.col(); j++)
                 n(i,j) = complex(i * m.col() + j + 1,i * m.col() + j + 1);
         
-        std::vector<std::vector<complex<size_t>>> test(test_size,std::vector<complex<size_t>>(test_size));
-        std::vector<std::vector<complex<size_t>>> test_prod(test_size,std::vector<complex<size_t>>(test_size,complex{0,0}));
+        std::vector<complex<size_t>> test(test_size * test_size,complex{0,0});
+        std::vector<complex<size_t>> test_prod(test_size * test_size,complex{0,0});
         for(auto i = 0; i < test_size; i++)
             for(auto j = 0; j < test_size; j++)
-                test[i][j] = complex(i * test_size + j + 1,i * test_size + j + 1);
+                at(test,test_size,i,j) = complex(i * test_size + j + 1,i * test_size + j + 1);
 
         START
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
                 size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
-                    test_prod[i][j] += test[i][k] * test[k][j];
+                    at(test_prod,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
                 }
             }
         }
-        STOP("Matrix Direct Multipication Time in milliseconds: ");
+        STOP("Complex Matrix Direct Multipication Time in milliseconds: ");
 
         START
         auto prod = m * n;
         for(auto i = 0; i < prod.row(); i++){
             for(auto j = 0; j < prod.col(); j++){
-                assert(( prod(i,j) == test_prod[i][j] ));
+                assert(( prod(i,j) == at(test_prod,test_size,i,j) ));
             }
         }
-        STOP("Matrix Lazy Multipication Time in milliseconds: ");
+        STOP("Complex Matrix Lazy Multipication Time in milliseconds: ");
         std::cout<<"Complex Matrix Multipication Test Passed!\n\n";
     }
 
@@ -397,30 +446,31 @@ namespace test {
             for(auto j = 0; j < m.col(); j++)
                 n(i,j) = complex(i * m.col() + j + 1,i * m.col() + j + 1);
         
-        std::vector<std::vector<complex<size_t>>> test(test_size,std::vector<complex<size_t>>(test_size));
-        std::vector<std::vector<complex<size_t>>> test_prod(test_size,std::vector<complex<size_t>>(test_size,complex{0,0}));
+        std::vector<complex<size_t>> test(test_size * test_size,complex{0,0});
+        std::vector<complex<size_t>> test_prod(test_size * test_size,complex{0,0});
         for(auto i = 0; i < test_size; i++)
             for(auto j = 0; j < test_size; j++)
-                test[i][j] = complex(i * test_size + j + 1,i * test_size + j + 1);
+                at(test,test_size,i,j) = complex(i * test_size + j + 1,i * test_size + j + 1);
 
         START
         for( int i = 0; i < test_size; i++ ) {
             for( int j = 0; j < test_size; j++ ) {
+                size_t val = 0;
                 for( int k = 0; k < test_size; k++ ) {
-                    test_prod[i][j] += test[i][k] * test[k][j];
+                    at(test_prod,test_size,i,j) += at(test,test_size,i,k) * at(test,test_size,k,j);
                 }
             }
         }
-        STOP("Matrix Direct Assign Multipication Time in milliseconds: ");
+        STOP("Complex Matrix Direct Assign Multipication Time in milliseconds: ");
 
         START
         m *= n;
         for(auto i = 0; i < m.row(); i++){
             for(auto j = 0; j < m.col(); j++){
-                assert(( m(i,j) == test_prod[i][j] ));
+                assert(( m(i,j) == at(test_prod,test_size,i,j)));
             }
         }
-        STOP("Matrix Lazy Assign Multipication Time in milliseconds: ");
+        STOP("Complex Matrix Lazy Assign Multipication Time in milliseconds: ");
         std::cout<<"Complex Matrix Multipication Assign Test Passed!\n\n";
     }
 }

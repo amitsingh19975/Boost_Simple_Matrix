@@ -5,23 +5,23 @@ using namespace std;
 using namespace simple;
 
 int main(){
-
-    test::testIntAssign(1000);
-    test::testIntCompare(1000);
-    test::testIntAdd(1000);
-    test::testIntAddAssign();
-    test::testIntSub(1000);
-    test::testIntSubAssign();
-    test::testIntMul(1000);
-    test::testIntMulAssign(1000);
-    test::testComplexAssign(1000);
-    test::testComplexCompare();
-    test::testComplexAdd(1000);
-    test::testComplexSub(1000);
-    test::testComplexSubAssign(1000);
-    test::testComplexAddAssign(1000);
-    test::testComplexMul(1000);
-    test::testComplexMulAssign(1000);
+    int size = 1000;
+    // test::testIntAssign(size);
+    // test::testIntCompare(size);
+    // test::testIntAdd(size);
+    // test::testIntAddAssign(size);
+    // test::testIntSub(size);
+    // test::testIntSubAssign(size);
+    test::testIntMul(size);
+    // test::testIntMulAssign(size);
+    // test::testComplexAssign(size);
+    // test::testComplexCompare(size);
+    // test::testComplexAdd(size);
+    // test::testComplexSub(size);
+    // test::testComplexSubAssign(size);
+    // test::testComplexAddAssign(size);
+    test::testComplexMul(size);
+    // test::testComplexMulAssign(size);
 
     return 0;
 }
