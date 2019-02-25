@@ -35,7 +35,7 @@ Simple Matrix lib for **Programming competency test**
 | `complex`  | (1000,1000) | 30753                   |34141                                 |36019                                 |
 
 ## Time Taken by Matrix Multiplication
-![matrixmultiplication](assets/Matrix_Multiplication.png)
+![matrixmultiplication](assets/matrix_multiplication.png)
 
 # System Specs
 - OS: MacOS
