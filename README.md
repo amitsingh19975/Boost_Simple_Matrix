@@ -17,22 +17,22 @@ Simple Matrix lib for **Programming competency test**
 
 | Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms) |
 | :--------: | :---------: |:-----------------------|:----------------------------------:|
-| `int`      | (1000,1000) | 35                      | 0                                   |
-| `complex`  | (1000,1000) | 48                      | 55                                   |
+| `int`      | (1000,1000) | 37                      | 44                                   |
+| `complex`  | (1000,1000) | 72                      | 71                                   |
 
 #### Subtraction
 
 | Type       | Shape       | Execution time (in ms)  |Execution time for assignment (in ms)  |
 | :--------: | :---------: |:-----------------------|:----------------------------------:|
-| `int`      | (1000,1000) | 36                      | 0                                   |
-| `complex`  | (1000,1000) | 48                      | 55                                  |
+| `int`      | (1000,1000) | 36                      | 44                                   |
+| `complex`  | (1000,1000) | 72                      | 72                                  |
 
 #### Multiplication
 
 | Type       | Shape       | Execution time for Direct (in ms)  |Execution time for Lazy (in ms) |Execution  time for Lazy assignment (in ms) |
 | :--------: | :---------: |:---------------------: |:----------------------------------:  |:----------------------------------:  |
 | `int`      | (1000,1000) | 14618                   |13925                                 |13312                                 |
-| `complex`  | (1000,1000) | 30753                   |34141                                 |36019                                 |
+| `complex`  | (1000,1000) | 31407                   |32080                                 |32121                                 |
 
 ## Time Taken by Matrix Multiplication
 ![matrixmultiplication](assets/matrix_multiplication.png)
