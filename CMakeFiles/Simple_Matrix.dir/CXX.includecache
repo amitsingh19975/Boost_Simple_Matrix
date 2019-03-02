@@ -6,35 +6,61 @@
 
 #IncludeRegexTransform: 
 
-/Users/Amit/Desktop/Python/c++/boost/include/expression.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/dynamic_engine.hpp
+storage.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/storage.hpp
+iostream
+-
+
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/engine.hpp
+dynamic_engine.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/dynamic_engine.hpp
+static_engine.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/static_engine.hpp
+iostream
+-
+
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/expression.hpp
 type_traits
 -
 iostream
 -
 
-/Users/Amit/Desktop/Python/c++/boost/include/matrix-v2.hpp
-storage.hpp
-/Users/Amit/Desktop/Python/c++/boost/include/storage.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/matrix.hpp
+engine.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/engine.hpp
 operations.hpp
-/Users/Amit/Desktop/Python/c++/boost/include/operations.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/operations.hpp
+cassert
+-
+
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/operations.hpp
+expression.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/expression.hpp
+
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/static_engine.hpp
+storage.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/storage.hpp
 iostream
 -
 
-/Users/Amit/Desktop/Python/c++/boost/include/operations.hpp
-expression.hpp
-/Users/Amit/Desktop/Python/c++/boost/include/expression.hpp
-
-/Users/Amit/Desktop/Python/c++/boost/include/storage.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/storage.hpp
 vector
 -
 array
 -
+memory
+-
 
 /Users/Amit/Desktop/Python/c++/boost/main.cpp
-test/cmatrix_test.hpp
-/Users/Amit/Desktop/Python/c++/boost/test/cmatrix_test.hpp
-test/matrix_test.hpp
-/Users/Amit/Desktop/Python/c++/boost/test/matrix_test.hpp
+include/matrix_v3/matrix.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/matrix.hpp
+test/matrix_test_v3_dynamic.hpp
+/Users/Amit/Desktop/Python/c++/boost/test/matrix_test_v3_dynamic.hpp
+test/matrix_test_v3_static.hpp
+/Users/Amit/Desktop/Python/c++/boost/test/matrix_test_v3_static.hpp
+algorithm
+-
 cassert
 -
 chrono
@@ -42,9 +68,9 @@ chrono
 complex
 -
 
-/Users/Amit/Desktop/Python/c++/boost/test/cmatrix_test.hpp
-../include/matrix-v2.hpp
-/Users/Amit/Desktop/Python/c++/boost/include/matrix-v2.hpp
+/Users/Amit/Desktop/Python/c++/boost/test/matrix_test_v3_dynamic.hpp
+../include/matrix_v3/matrix.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/matrix.hpp
 iostream
 -
 chrono
@@ -54,9 +80,9 @@ complex
 cassert
 -
 
-/Users/Amit/Desktop/Python/c++/boost/test/matrix_test.hpp
-../include/matrix-v2.hpp
-/Users/Amit/Desktop/Python/c++/boost/include/matrix-v2.hpp
+/Users/Amit/Desktop/Python/c++/boost/test/matrix_test_v3_static.hpp
+../include/matrix_v3/matrix.hpp
+/Users/Amit/Desktop/Python/c++/boost/include/matrix_v3/matrix.hpp
 iostream
 -
 chrono
