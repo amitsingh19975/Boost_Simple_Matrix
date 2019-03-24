@@ -4,6 +4,11 @@
 #include "storage.hpp"
 #include <iostream>
 
+/**
+ * @brief This structure is used to get the size during compile time
+ * or static dimension
+ */
+
 template<size_t matrix_rows, size_t matrix_cols, typename StoragePolicy>
 struct StaticEngine : public StoragePolicy{
 

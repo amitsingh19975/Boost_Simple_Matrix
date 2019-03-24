@@ -4,6 +4,11 @@
 #include "storage.hpp"
 #include <iostream>
 
+/**
+ * @brief This structure is used to get the size during runtime time
+ * or dynamic dimension
+ */
+
 template<typename StoragePolicy>
 struct DynamicEngine : public StoragePolicy{
 

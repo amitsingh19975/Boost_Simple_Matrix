@@ -8,7 +8,7 @@
 namespace sm_v3{
     template<typename S>
     struct Storage;
-
+    
     template<typename T, typename A>
     struct Storage< std::vector<T,A> >{
         using storage_type      = std::vector<T,A>;

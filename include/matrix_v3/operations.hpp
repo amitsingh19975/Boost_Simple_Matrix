@@ -5,6 +5,10 @@
 
 namespace sm_v3{
 
+    /**
+     * @brief structure implements operator+ overloading
+     */
+
     struct Addition{
         template<typename Op1, typename Op2>
         friend constexpr auto operator+(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> 
@@ -14,6 +18,10 @@ namespace sm_v3{
                 return {lhs.self(),rhs.self()};
         }
     };
+
+    /**
+     * @brief structure implements operator- overloading
+     */
 
     struct Subtraction{
         template<typename Op1, typename Op2>
@@ -25,6 +33,10 @@ namespace sm_v3{
         }
     };
 
+    /**
+     * @brief structure implements operator* overloading
+     */
+
     struct Multipication{
         template<typename Op1, typename Op2>
         friend constexpr auto operator*(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> 
@@ -33,6 +45,11 @@ namespace sm_v3{
                 return {lhs.self(),rhs.self()};
         }
     };
+
+    /**
+     * @brief these structure tells the matrix which operations it 
+     * is allowed to perform
+     */
 
     struct Operation_Add : public Addition{};
     struct Operation_Mul : public Multipication{};

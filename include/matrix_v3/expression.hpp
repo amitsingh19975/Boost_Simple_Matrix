@@ -46,6 +46,10 @@ namespace sm_v3{
         constexpr auto size() const noexcept -> size_t{return rows() * cols();}
     };
 
+    /**
+     * @brief structure implements how addition is performed
+     */
+
     struct AdditionExpression{
         template<typename Op1, typename Op2>
         constexpr decltype(auto) operator()(Op1 const& lhs, Op2 const& rhs, size_t i, size_t j) const{
@@ -53,12 +57,20 @@ namespace sm_v3{
         }
     };
 
+    /**
+     * @brief structure implements how Subtraction is performed
+     */
+
     struct SubtractionExpression{
         template<typename Op1, typename Op2>
         constexpr decltype(auto) operator()(Op1 const& lhs, Op2 const& rhs, size_t i, size_t j) const{
             return lhs(i,j) - rhs(i,j);
         }
     };
+
+    /**
+     * @brief structure implements how Multipication is performed
+     */
 
     struct MultipicationExpression{
         template<typename Op1, typename Op2>
@@ -70,29 +82,6 @@ namespace sm_v3{
             return sum;
         }
     };
-
-    // template<typename Op1, typename Op2>
-    // constexpr auto operator+(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> 
-    //     BinaryExpression<AdditionExpression, Op1, Op2>{
-    //         assert(lhs.self().rows() == rhs.self().rows());
-    //         assert(lhs.self().cols() == rhs.self().cols());
-    //         return {lhs.self(),rhs.self()};
-    // }
-
-    // template<typename Op1, typename Op2>
-    // constexpr auto operator-(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> 
-    //     BinaryExpression<SubtractionExpression, Op1, Op2>{
-    //         assert(lhs.self().rows() == rhs.self().rows());
-    //         assert(lhs.self().cols() == rhs.self().cols());
-    //         return {lhs.self(),rhs.self()};
-    // }
-
-    // template<typename Op1, typename Op2>
-    // constexpr auto operator*(BaseExpression<Op1> const& lhs, BaseExpression<Op2> const& rhs) -> 
-    //     BinaryExpression<MultipicationExpression, Op1, Op2>{
-    //         assert(lhs.self().rows() == rhs.self().cols());
-    //         return {lhs.self(),rhs.self()};
-    // }
 
 }
 
